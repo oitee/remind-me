@@ -13,7 +13,7 @@ router.get("/", renderHome);
 
 router.get("/problem/:id", getProblem);
 
-router.get("/next/:id", goToNext);
+router.get("/next", goToNext);
 
 router.get("/hint/:id", getHint);
 

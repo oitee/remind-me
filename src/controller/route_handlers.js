@@ -1,5 +1,5 @@
 import * as database from "../model/database.js";
-import * as constants from "../constants.js"
+import * as constants from "../constants.js";
 
 export function renderHome(request, response) {
   let randomId = getRandomId();
@@ -15,13 +15,13 @@ export function renderHome(request, response) {
 }
 
 export function goToNext(request, response) {
-  const existingId = request.params.id;
-  console.log(`Existing ID: ${existingId}`);
+  //const existingId = request.params.id;
+  //console.log(`Existing ID: ${existingId}`);
   let nextId = getRandomId();
 
-  while (nextId.id === existingId) {
-    nextId = getRandomId();
-  }
+  //   while (nextId.id === existingId) {
+  //     nextId = getRandomId();
+  //   }
 
   if (nextId.status) {
     return response.redirect(`/problem/${nextId.id}`);
@@ -37,13 +37,15 @@ export function goToNext(request, response) {
 }
 
 export function getProblem(request, response) {
-  return response.render("home.mustache");
-  
-    let id = request.params.id;
+  let id = request.params.id;
   let problemObj = getProblemObject(id);
   if (problemObj.status) {
     const { problemTitle, problemDescription } = problemObj.data;
-    return response.json({ problemTitle, problemDescription });
+    return response.render("home.mustache", {
+      title: problemTitle,
+      description: problemDescription,
+    });
+    //return response.json({ problemTitle, problemDescription });
   }
   console.error(
     `Error while generating problem. Requested ID is not present in the database: ${id}`
@@ -61,7 +63,7 @@ export function getHint(request, response) {
 
   if (problemObj.status) {
     const { hint } = problemObj.data;
-    response.json({ hint });
+    return response.json({ hint });
   }
   return response
     .status(500)
@@ -74,8 +76,8 @@ export function getSolution(request, response) {
   let id = request.params.id;
   let problemObj = getProblemObject(id);
   if (problemObj.status) {
-    const { solution } = problemObj.data;
-    response.json({ solution });
+    const { solution, hint } = problemObj.data;
+    return response.json({ solution, hint });
   }
   return response
     .status(500)

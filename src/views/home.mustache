@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remind Me!</title>
 </head>
+
 <body>
-    
-        <h1> Remind Me! </h1>
-        
-        <h3> Maximal Square</h3>
-        
-        <div id="responsive">
-            <p>
-                Want to see Hint?
-                <button onclick="getHint()">Show Hint</button>
-            </p>
-    
-        </div>
-        
-        <p> 
-            <a href=`/next/something`>Next!</a>
+
+    <h1> Remind Me! </h1>
+    <br>
+    <h3> {{title}}</h3>
+    <p>{{description}}</p>
+
+    <div id="responsive">
+        <p>
+            Want to see Hint?
+            <button onclick="getHint()">Show Hint</button>
         </p>
-        
+
+    </div>
+
+    <p>
+        <a href=/next>Next!</a>
+    </p>
+
 </body>
+
 </html>
 
 <script>
-    function getHint(event){
-        
+    async function getHint(event) {
+        let currentUrl = window.location.pathname;
+        let id = currentUrl.split('/')[2];
+
+        let res = await fetch(`/hint/${id}`).then(res => res.json());
+
         document.getElementById("responsive").innerHTML = `
         <div id="responsive">
             <h3>Hint:</h3>
             <p>
-                Here is the Hint.
+                ${res.hint}
                 <br> 
                 <br>
                            
@@ -45,12 +53,16 @@
         `
 
     }
-    function getSolution() {
-  document.getElementById("responsive").innerHTML = `
+    async function getSolution() {
+        let currentUrl = window.location.pathname;
+        let id = currentUrl.split('/')[2];
+
+        let res = await fetch(`/solution/${id}`).then(res => res.json());
+        document.getElementById("responsive").innerHTML = `
         <div id="responsive">
             <h3>Hint:</h3>
             <p>
-                Here is the Hint.
+                ${res.hint}
                 <br> 
                 <br>
             </p>
@@ -58,9 +70,9 @@
                 Solution
             </h3> 
             <p>
-                Here Goes the Solution
+                ${res.solution}
             </p> 
         </div>
         `
-}
+    }
 </script>
