@@ -1,25 +1,37 @@
-import fs from 'fs';
-import {dirname} from '../constants.js';
+import fs from "fs";
+import { dirname } from "../constants.js";
 
-//console.log(__dirname);
-//const data = fs.readFileSync('../../data.txt');
-
-const database = JSON.parse(fs.readFileSync(`${dirname}data.txt`, {encoding: "utf-8"}));
+const database = JSON.parse(
+  fs.readFileSync(`${dirname}data.txt`, { encoding: "utf-8" })
+);
 
 let dataMap = new Map();
+let listOfIds = [];
 
-database.forEach(element => {
-    let {id, problemTitle, problemDescription, hint, solution} = element;
-    dataMap.set(id, {problemTitle, problemDescription, hint, solution});
-})
+database.forEach((element) => {
+  let { id, problemTitle, problemDescription, hint, solution } = element;
+  dataMap.set(id, { problemTitle, problemDescription, hint, solution });
+  listOfIds.push(id);
+});
 
+export function size() {
+  return dataMap.size;
+}
 
+export function getId(index) {
+  return listOfIds[index];
+}
 
+function idExists(id) {
+  if (dataMap.has(id)) {
+    return true;
+  }
+  return false;
+}
 
-//console.log(dataMap);
-// create a map of id to problems
-// write a function that
-// given an id, provides all the details entire object
-// another function that tells you if an id is present
-
-
+export function getData(id) {
+  if (idExists(id)) {
+    return dataMap.get(id);
+  }
+  return null;
+}

@@ -1,6 +1,6 @@
-import express from 'express';
-import * as constant from './constants.js';
-import {router} from "./routes.js";
+import express from "express";
+import * as constant from "./constants.js";
+import { router } from "./routes.js";
 
 const app = express();
 
