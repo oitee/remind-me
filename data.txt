@@ -1,0 +1,37 @@
+[
+  {
+    "id": "find-peak-element",
+    "problemTitle": "Find Peak Element",
+    "problemDescription": "A peak element is an element that is strictly greater than its neighbors. Given an integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks. You may imagine that nums[-1] = nums[n] = -∞. You must write an algorithm that runs in O(log n) time.",
+    "hint": "Start with the middle element",
+    "solution": "Start with mid element.\n        If this is a peak, then return it.\n        If this element is less than the next element, it means this element is part of an asceding slope. So, make lo = mid + 1,\n        If this element is less than the earlier element, move to the earlier sub-array, ie, hi = mid - 1\n        At the end, if lo === hi, lo is the peak element. Because it would mean we have reached the end of the array. And edges are peaks, if their adjacent element are smaller than them."
+  },
+  {
+    "id": "boats-to-save-people",
+    "problemTitle": "Boats to Save People",
+    "problemDescription": "You are given an array people where people[i] is the weight of the ith person, and an infinite number of boats where each boat can carry a maximum weight of limit. Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most limit.\n\n        Return the minimum number of boats to carry every given person.\n        ",
+    "hint": "Start with sorting the array",
+    "solution": "Sort the array.\n        For each people[hi] + people[lo] > limit, hi-- and boats++.\n        For others, hi-- lo++ boats++\n        At the end, if hi == lo (indicating that there was an odd number of elements), boats++"
+  },
+  {
+    "id": "search-a-2d-matrix",
+    "problemTitle": "Search a 2D Matrix",
+    "problemDescription": "Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:\n        Integers in each row are sorted from left to right.\n        The first integer of each row is greater than the last integer of the previous row",
+    "hint": "Use Binary Search; See the 2D array as one long array",
+    "solution": "See the 2D array as one long array. Start with mid row. \n        If target <mid[0], make hi = mid - 1\n        If target > mid[length - 1], make lo = mid + 1\n        Else, search mid array."
+  },
+  {
+    "id": "maximal-square",
+    "problemTitle": "Maximal Square",
+    "problemDescription": "Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.",
+    "hint": "Dynamic Programming; Create a new 2D array of the same size. Each element of this array represents the bottom left corner of a square from the original matrix",
+    "solution": "Create a matrix, called dp, of the same size\n        Fill each element of dp with 0\n        Now, for every \"1\" we come across on our main matrix, we update the value of the corresponding cell on the dp.\n        But the value should be 1 + minimum of (left, top and diagonal cells) of that cell of the dp\n        Why top, left etc? Because in our main matrix, we started from (0, 0)\n        So as we go bottom-right in the matrix, we keep looking up-left on the dp,to find fully filled  squares\n        Keep a tab of the largest side\n        After the iteration is over, we just square the largest side to get the result\n        "
+  },
+  {
+    "id": "minimize-maximum-pair-sum-in-array",
+    "problemTitle": "Minimize Maximum Pair Sum in Array",
+    "problemDescription": "The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.\n\n        For example, if we have pairs (1,5), (2,3), and (4,4), the maximum pair sum would be max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8.\n        Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:\n        \n        Each element of nums is in exactly one pair, and\n        The maximum pair sum is minimized.\n        Return the minimized maximum pair sum after optimally pairing up the elements.",
+    "hint": "Sort the array and then use two-pointer technique",
+    "solution": "Sort the array.\n        The correct way to build pairs is: (hi + lo), (hi--, lo--) etc. (But why?)\n        Compare each pair. \n        Ideally, (hi + lo) should be the min of max pair. BUT this is not the case when [lo] is negative."
+  }
+]

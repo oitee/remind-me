@@ -1,0 +1,23 @@
+{
+  "name": "remind-me",
+  "version": "1.0.0",
+  "description": "A flash cards web-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oitee/remind-me.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oitee/remind-me/issues"
+  },
+  "homepage": "https://github.com/oitee/remind-me#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "type" : "module"
+}
