@@ -1,4 +1,5 @@
 import * as database from "../model/database.js";
+import * as constants from "../constants.js"
 
 export function renderHome(request, response) {
   let randomId = getRandomId();
@@ -36,7 +37,9 @@ export function goToNext(request, response) {
 }
 
 export function getProblem(request, response) {
-  let id = request.params.id;
+  return response.render("home.mustache");
+  
+    let id = request.params.id;
   let problemObj = getProblemObject(id);
   if (problemObj.status) {
     const { problemTitle, problemDescription } = problemObj.data;

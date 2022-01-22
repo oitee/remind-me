@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind Me!</title>
+</head>
+<body>
+    
+        <h1> Remind Me! </h1>
+        
+        <h3> Maximal Square</h3>
+        
+        <div id="responsive">
+            <p>
+                Want to see Hint?
+                <button onclick="getHint()">Show Hint</button>
+            </p>
+    
+        </div>
+        
+        <p> 
+            <a href=`/next/something`>Next!</a>
+        </p>
+        
+</body>
+</html>
+
+<script>
+    function getHint(event){
+        
+        document.getElementById("responsive").innerHTML = `
+        <div id="responsive">
+            <h3>Hint:</h3>
+            <p>
+                Here is the Hint.
+                <br> 
+                <br>
+                           
+                Want to see the Solution as well?
+                <button onclick="getSolution()">Reveal solution</button>
+            </p>
+        </div>
+        `
+
+    }
+    function getSolution() {
+  document.getElementById("responsive").innerHTML = `
+        <div id="responsive">
+            <h3>Hint:</h3>
+            <p>
+                Here is the Hint.
+                <br> 
+                <br>
+            </p>
+            <h3>
+                Solution
+            </h3> 
+            <p>
+                Here Goes the Solution
+            </p> 
+        </div>
+        `
+}
+</script>
